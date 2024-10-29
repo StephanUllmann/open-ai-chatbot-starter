@@ -3,19 +3,8 @@ import { toast } from 'react-toastify';
 
 const RequestForm = ({ messages, setMessages, totalRequests, setTotalRequests }) => {
   const [loading, setLoading] = useState(false);
-  const [{ message, stream }, setFormState] = useState({
-    message: '',
-    stream: false,
-  });
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    const newValue = type === 'checkbox' ? checked : value;
-    setFormState((prevState) => ({
-      ...prevState,
-      [name]: newValue,
-    }));
-  };
+  // TODO: add state and change handler to control form elements
 
   const handleSubmit = async (e) => {
     try {
@@ -40,18 +29,17 @@ const RequestForm = ({ messages, setMessages, totalRequests, setTotalRequests })
     }
   };
 
+  // TODO: control the input elements in this form with React State
   return (
     <form onSubmit={handleSubmit}>
       <label className='label cursor-pointer flex justify-end gap-2'>
         <span className='label-text'>Stream response?</span>
-        <input type='checkbox' name='stream' checked={stream} onChange={handleChange} className='checkbox' />
+        <input type='checkbox' name='stream' className='checkbox' />
       </label>
       <div className='flex items-center gap-2'>
         <textarea
           name='message'
-          value={message}
           rows='2'
-          onChange={handleChange}
           placeholder='Ask me anything...'
           className='w-full textarea textarea-bordered'
           disabled={loading}
